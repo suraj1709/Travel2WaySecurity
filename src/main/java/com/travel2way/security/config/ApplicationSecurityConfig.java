@@ -52,10 +52,15 @@ public  class ApplicationSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .authorities(ADMIN.getGrantedAuthorities())
                .build();
         UserDetails user1=User.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("admin"))
+                .authorities(ADMIN.getGrantedAuthorities())
+                .build();
+        UserDetails user2=User.builder()
                 .username("suraj")
                 .password(passwordEncoder.encode("codeforfun"))
                 .authorities(VISITOR.getGrantedAuthorities())
                 .build();
-        return new InMemoryUserDetailsManager(user,user1);
+        return new InMemoryUserDetailsManager(user,user1,user2);
     }
 }
